@@ -1,0 +1,16 @@
+{
+  "name": "p5js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "conn.js",
+  "dependencies": {
+    "sockette": "^2.0.6",
+    "websocket": "^1.0.32"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adityan-Sunil",
+  "license": "ISC"
+}
