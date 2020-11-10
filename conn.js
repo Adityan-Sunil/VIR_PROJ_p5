@@ -74,12 +74,11 @@ webSocket.onmessage = function (event) {
       }
       console.log(document.getElementsByClassName("player"));
       for (let i = 0; i < document.getElementsByClassName("player").length; i++) {
-        if(nextPlayer === document.getElementsByClassName("player")[i].getAttribute("id")){
+        if(nextPlayer === document.getElementsByClassName("player")[i].getAttribute("id") && document.getElementsByClassName("player")[i].classList.contains("lost")){
           nextPlayer = document.getElementsByClassName("player")[(i+1)%document.getElementsByClassName("player").length].getAttribute("id")
           createNextPlayer(nextPlayer);
           break; 
-        }
-        
+        }  
       }
       break;
     case "disconnect":
