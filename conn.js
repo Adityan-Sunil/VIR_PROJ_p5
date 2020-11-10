@@ -1,5 +1,4 @@
 var url = "wss://fgz1acx06f.execute-api.us-east-1.amazonaws.com/Development/";
-//var url = "ws://localhost:4000/socket";
 var myColor;
 var serverDiv = document.getElementById("players");
 webSocket = new WebSocket(url);
