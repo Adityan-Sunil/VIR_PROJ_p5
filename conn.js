@@ -17,10 +17,12 @@ webSocket.onmessage = function (event) {
   console.log(JSON.parse(event.data));
   var data = JSON.parse(event.data);
   var data = JSON.parse(event.data);
+  var playerarr;
+  var colorarr;
   switch (data.action) {
     case "joinRoom":
-      var playerarr = data.userID;
-      var colorarr = data.color;
+      playerarr = data.userID;
+      colorarr = data.color;
       currentroomID = data.roomID;
       document.getElementById("roomID").innerText = currentroomID;
       createPlayerDiv(playerarr,colorarr);
@@ -43,10 +45,8 @@ webSocket.onmessage = function (event) {
         sp[i].classList.remove("active");
         sp[i].innerText="";
       }
-      var next = document.getElementById(data.next);
       nextPlayer = data.next;
-      next.getElementsByTagName("span")[0].classList.add("active");
-      next.getElementsByTagName("span")[0].innerText = "Now Playing";
+      createNextPlayer(nextPlayer);
       break;
     case "assignCol":
       console.log("Assigning "+data.color);
@@ -64,7 +64,7 @@ webSocket.onmessage = function (event) {
         console.log("Game Over. The winner is "+data.winner);
       break;
     case "playerlost":
-      document.getElementById(data.color).classList.remove("active");
+      //document.getElementById(data.color).classList.remove("active");
       document.getElementById(data.color).getElementsByTagName("span")[0].innerText = "";
       document.getElementById(data.color).classList.add("lost");
       if(data.color === myColor){
@@ -72,13 +72,19 @@ webSocket.onmessage = function (event) {
       }else{
         console.log(data.color+" has lost");
       }
-      if(document.getElementById(myColor).classList.contains("active")){
-      nextPlayer = colorarr[(colorarr.findIndex(myColor)+1)%colorarr.length];
+      console.log(document.getElementsByClassName("player"));
+      for (let i = 0; i < document.getElementsByClassName("player").length; i++) {
+        if(nextPlayer === document.getElementsByClassName("player")[i].getAttribute("id")){
+          nextPlayer = document.getElementsByClassName("player")[(i+1)%document.getElementsByClassName("player").length].getAttribute("id")
+          createNextPlayer(nextPlayer);
+          break; 
+        }
+        
       }
       break;
     case "disconnect":
-      var playerarr = data.userID;
-      var colorarr = data.color;
+      playerarr = data.userID;
+      colorarr = data.color;
       createPlayerDiv(playerarr,colorarr);
     break;
     default:
@@ -153,4 +159,10 @@ function createPlayerDiv(playerarr,colorarr){
     player.append(player_nm);
     serverDiv.append(player);
   }
+}
+function createNextPlayer(data){
+  var next = document.getElementById(data);
+      next.getElementsByTagName("span")[0].classList.add("active");
+      next.getElementsByTagName("span")[0].innerText = "Now Playing";
+
 }
