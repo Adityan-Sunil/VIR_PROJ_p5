@@ -1,7 +1,6 @@
 {
   "name": "p5js",
   "version": "1.0.0",
-  "description": "",
   "main": "conn.js",
   "dependencies": {
     "sockette": "^2.0.6",
@@ -12,5 +11,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Adityan-Sunil",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adityan-Sunil/VIR_PROJ_p5.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Adityan-Sunil/VIR_PROJ_p5/issues"
+  },
+  "homepage": "https://github.com/Adityan-Sunil/VIR_PROJ_p5#readme",
+  "description": ""
 }
