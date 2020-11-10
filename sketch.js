@@ -93,7 +93,7 @@ function expandReaction(i,j,color){
     }else{
         count = 0;
         grid[i][j].atoms = 0;
-        grid[i][j].owner = color;
+        grid[i][j].owner = 255;
         expandReaction(i+1,j,color);
         expandReaction(i-1,j,color);
         expandReaction(i,j+1,color);

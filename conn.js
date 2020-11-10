@@ -59,9 +59,9 @@ webSocket.onmessage = function (event) {
         document.getElementById("winner").innerText = "You are the winner";
       else
         document.getElementById("winner").innerText = "Game Over. The winner is "+data.userID;
-      document.getElementById("game").classList.add("hidden");
-      document.getElementById("gameOver").classList.remove("hidden");
-      console.log("Game Over. The winner is "+data.winner);
+        document.getElementById("game").classList.add("hidden");
+        document.getElementById("gameOver").classList.remove("hidden");
+        console.log("Game Over. The winner is "+data.winner);
       break;
     case "playerlost":
       document.getElementById(data.color).classList.remove("active");
@@ -71,6 +71,9 @@ webSocket.onmessage = function (event) {
         console.log("You have lost");
       }else{
         console.log(data.color+" has lost");
+      }
+      if(document.getElementById(myColor).classList.contains("active")){
+      nextPlayer = colorarr[(colorarr.findIndex(myColor)+1)%colorarr.length];
       }
       break;
     case "disconnect":
@@ -92,7 +95,7 @@ function connect(){
 function restart(){
   window.location.reload();
 }
-webSocket.onopen = function (event) {``
+webSocket.onopen = function (event) {
   console.log("Connected");
 };
 webSocket.onclose = function(event){
